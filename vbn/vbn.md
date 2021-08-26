@@ -1,4 +1,8 @@
 # OTP setup for VBN
+There is not just one way to do it.
+That is why you find the following selection.
+
+## Setup according to [basic tutorial](http://docs.opentripplanner.org/en/latest/Basic-Tutorial/) 
 * Download GTFS [data](vbn.gtfs.zip) from Connect-Fahrplanauskunft GmbH
 * Download osm map data from [geofabrik](lower-saxony.osm.pbf.ln)
 * Get bounding box for VBN from https://boundingbox.klokantech.com/
@@ -15,3 +19,12 @@
  * The output file is called `graph.obj`
 * Finally, the server can be started using the --load parameter
  * java -Xmx2G -jar otp.jar --load .
+
+## Setup accoriding to [cookbook](https://transportkollektiv.github.io/digitransit-setup/index.html)
+There is a dedicated [repository[(https://github.com/transportkollektiv/digitransit-setup) for this cookbook.
+
+to be continued
+
+## Setup accoding to [Stadtnavi tutorial](https://github.com/stadtnavi/stadtnavi-tutorial)
+
+to be continued
