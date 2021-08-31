@@ -1,6 +1,6 @@
 # OTP setup for VBN
 There is not just one way to do it.
-That is why you find the following selection.
+That is why you have following selection.
 
 ## Setup according to [basic tutorial](http://docs.opentripplanner.org/en/latest/Basic-Tutorial/) 
 * Download GTFS [data](vbn.gtfs.zip) from Connect-Fahrplanauskunft GmbH
@@ -26,5 +26,27 @@ There is a dedicated [repository[(https://github.com/transportkollektiv/digitran
 to be continued
 
 ## Setup accoding to [Stadtnavi tutorial](https://github.com/stadtnavi/stadtnavi-tutorial)
+
+### Lessons Learned
+Setting both `MEMORY` and `GRAPH_BUILD_MEMORY` to 4 GB and running the instruction ```docker-compose --env-file=.env.vbn up --build -d``` on a computer with 8 GB total and 4 GB memory available results in the following error.
+
+```
+Exception in thread "main" java.lang.OutOfMemoryError: Java heap space
+	at org.opentripplanner.common.geometry.PackedCoordinateSequence$Double.<init>(PackedCoordinateSequence.java:246)
+	at org.opentripplanner.common.geometry.Serializable2DPackedCoordinateSequenceFactory.create(Serializable2DPackedCoordinateSequenceFactory.java:15)
+	at org.locationtech.jts.geom.GeometryFactory.createLineString(GeometryFactory.java:573)
+	at org.opentripplanner.common.geometry.GeometryUtils.makeLineString(GeometryUtils.java:53)
+	at org.opentripplanner.common.geometry.GeometryUtils.addStartEndCoordinatesToLineString(GeometryUtils.java:71)
+	at org.opentripplanner.common.geometry.CompactLineString.compactLineString(CompactLineString.java:110)
+	at org.opentripplanner.model.TripPattern.setHopGeometry(TripPattern.java:163)
+	at org.opentripplanner.model.TripPattern.setHopGeometries(TripPattern.java:158)
+	at org.opentripplanner.graph_builder.module.geometry.GeometryAndBlockProcessor.run(GeometryAndBlockProcessor.java:161)
+	at org.opentripplanner.graph_builder.module.GtfsModule.buildGraph(GtfsModule.java:153)
+	at org.opentripplanner.graph_builder.GraphBuilder.run(GraphBuilder.java:81)
+	at org.opentripplanner.standalone.OTPMain.startOTPServer(OTPMain.java:136)
+	at org.opentripplanner.standalone.OTPMain.main(OTPMain.java:52)
+12:11:10.329 INFO (OtpStartupInfo.java:47) OTP SHUTTING DOWN (version: 2.1.0-SNAPSHOT, ser.ver.id: 8, commit: f4d04d59568708cf9778b48f8cb8bbcb9d16b269, branch: dev-2.x)
+The command '/bin/sh -c java -Xmx$MEMORY -jar otp-shaded.jar --build --save /opt/opentripplanner/build/' returned a non-zero code: 1
+```
 
 to be continued
