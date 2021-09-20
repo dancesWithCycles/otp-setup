@@ -33,6 +33,12 @@ scp -P 22  otp-setup/vbn/build-config.json sib@83.223.94.182:/home/sib/vbn/otp/
 scp -P 22  otp-setup/vbn/otp-config.json sib@83.223.94.182:/home/sib/vbn/otp/
 scp -P 22  otp-setup/vbn/router-config.json sib@83.223.94.182:/home/sib/vbn/otp/
 ```
+## Validation
+Print OTP version like this.
+
+```
+java -jar otp.jar --version|tee version.txt
+```
 
 ## Setup according to [basic tutorial](http://docs.opentripplanner.org/en/latest/Basic-Tutorial/)
 * Download GTFS [data](vbn.gtfs.zip) from Connect-Fahrplanauskunft GmbH
