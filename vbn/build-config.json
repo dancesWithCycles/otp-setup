@@ -1,5 +1,4 @@
 {
   "areaVisibility": true,
-  "parentStopLinking": true,
-  "osmWayPropertySet": "germany"
+  "parentStopLinking": true
 }
