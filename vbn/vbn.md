@@ -17,6 +17,23 @@ That is why you have the following selection.
  * Test JAVA version like this:
   * ```java -version```
 
+## Upload OTP onto host system
+Donload JAR [archive](https://repo1.maven.org/maven2/org/opentripplanner/otp/2.0.0/).
+You find  more details in the [Basic Tutorial](http://docs.opentripplanner.org/en/latest/Basic-Tutorial/)
+Copy JAR archive from Maven [directory](https://repo1.maven.org/maven2/org/opentripplanner/otp/2.0.0/) onto host file system like this.
+
+```
+scp -P 22  ~/otp/otp-2.0.0-shaded.jar sib@83.223.94.182:/home/sib/otp/
+```
+
+Copy config files from [git repo](https://github.com/Stefan-Begerad/otp-setup) onto host file system like this.
+
+```
+scp -P 22  otp-setup/vbn/build-config.json sib@83.223.94.182:/home/sib/vbn/otp/
+scp -P 22  otp-setup/vbn/otp-config.json sib@83.223.94.182:/home/sib/vbn/otp/
+scp -P 22  otp-setup/vbn/router-config.json sib@83.223.94.182:/home/sib/vbn/otp/
+```
+
 ## Setup according to [basic tutorial](http://docs.opentripplanner.org/en/latest/Basic-Tutorial/)
 * Download GTFS [data](vbn.gtfs.zip) from Connect-Fahrplanauskunft GmbH
 * Download osm map data from [geofabrik](lower-saxony.osm.pbf.ln)
