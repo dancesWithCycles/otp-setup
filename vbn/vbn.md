@@ -1,8 +1,23 @@
 # OTP setup for VBN
 There is not just one way to do it.
-That is why you have following selection.
+That is why you have the following selection.
 
-## Setup according to [basic tutorial](http://docs.opentripplanner.org/en/latest/Basic-Tutorial/) 
+## Prepare host system
+* Set up Java
+ * Download [JRE](https://adoptopenjdk.net/?variant=openjdk11&jvmVariant=hotspot)
+ * Copy JRE onto host system like this:
+  * ```scp -P 22 ~/OpenJDK11U-jre_x64_linux_hotspot_11.0.12_7.tar.gz sib@83.223.94.182:/home/sib/```
+ * Move and extract archive like this:
+  * ```sudo mv ~/OpenJDK11U-jre_x64_linux_hotspot_11.0.12_7.tar.gz /opt/```
+  * ```sudo tar -xzf OpenJDK11U-jre_x64_linux_hotspot_11.0.12_7.tar.gz```
+ * At JAVA_HOME to ```~/.bashrc``` like this:
+  * ```export JAVA_HOME=/opt/jdk-11.0.12+7-jre```
+ * Extend PATH in ```~/.bashrc``` like this:
+  * ```export PATH=$PATH:$JAVA_HOME/bin```
+ * Test JAVA version like this:
+  * ```java -version```
+
+## Setup according to [basic tutorial](http://docs.opentripplanner.org/en/latest/Basic-Tutorial/)
 * Download GTFS [data](vbn.gtfs.zip) from Connect-Fahrplanauskunft GmbH
 * Download osm map data from [geofabrik](lower-saxony.osm.pbf.ln)
 * Get bounding box for VBN from https://boundingbox.klokantech.com/
@@ -12,13 +27,15 @@ That is why you have following selection.
  * `osmconvert lower-saxony.osm.pbf.ln -b=7.6966,52.4508,9.6501,53.8503 --complete-ways -o=vbn.osm.pbf`
  * The output file is called `vbn.osm.pbf`
 * Build a street graph with OSM and elevation data only (ignoring transit input files)
- * `java -Xmx2G -jar otp.jar --buildStreet .`
+ * `java -Xmx5G -jar otp.jar --buildStreet .`
  * The output file is called `streetGraph.obj`
 * Build a graph layering transit data on top of the saved street graph (built using the previous command)
- * `java -Xmx2G -jar otp.jar --loadStreet --save .`
+ * `java -Xmx5G -jar otp.jar --loadStreet --save .`
  * The output file is called `graph.obj`
+* Copy config files to the right place like this:
+ * ```tbd```
 * Finally, the server can be started using the --load parameter
- * java -Xmx2G -jar otp.jar --load .
+ * java -Xmx5G -jar otp.jar --load .
 
 ## Setup accoriding to [cookbook](https://transportkollektiv.github.io/digitransit-setup/index.html)
 There is a dedicated [repository[(https://github.com/transportkollektiv/digitransit-setup) for this cookbook.
