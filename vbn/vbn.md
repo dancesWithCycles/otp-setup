@@ -10,7 +10,7 @@ That is why you have the following selection.
  * Move and extract archive like this:
   * ```sudo mv ~/OpenJDK11U-jre_x64_linux_hotspot_11.0.12_7.tar.gz /opt/```
   * ```sudo tar -xzf OpenJDK11U-jre_x64_linux_hotspot_11.0.12_7.tar.gz```
- * At JAVA_HOME to ```~/.bashrc``` like this:
+ * Add JAVA_HOME to ```~/.bashrc``` like this:
   * ```export JAVA_HOME=/opt/jdk-11.0.12+7-jre```
  * Extend PATH in ```~/.bashrc``` like this:
   * ```export PATH=$PATH:$JAVA_HOME/bin```
