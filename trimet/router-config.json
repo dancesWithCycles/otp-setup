@@ -1,0 +1,31 @@
+// router-config.json
+{
+    // Routing defaults are any public field or setter in the Java class
+    // org.opentripplanner.routing.api.request.RoutingRequest
+    "routingDefaults": {
+        "numItineraries": 6,
+        "walkSpeed": 2.0,
+        "stairsReluctance": 4.0,
+        "carDropoffTime": 240
+    },
+    "requestLogFile": "/var/otp/request.log",
+    "updaters": [
+
+        // GTFS-RT service alerts (frequent polling)
+        {
+            "type": "real-time-alerts",
+            "frequencySec": 30,
+            "url": "http://developer.trimet.org/ws/V1/FeedSpecAlerts/appID/0123456789ABCDEF",
+            "feedId": "TriMet"
+        },
+        // Polling for GTFS-RT TripUpdates)
+        {
+            "type": "stop-time-updater",
+            "frequencySec": 60,
+            // this is either http or file... shouldn't it default to http or guess from the presence of a URL?
+            "sourceType": "gtfs-http",
+            "url": "http://developer.trimet.org/ws/V1/TripUpdate/appID/0123456789ABCDEF",
+            "feedId": "TriMet"
+        }
+    ]
+}
